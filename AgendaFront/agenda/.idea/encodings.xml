@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/js/modules/equipamento/equipamento.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/modules/equipamento/equipamento.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/modules/pessoa/pessoa.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/modules/pessoa/pessoa.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/modules/reuniao/reuniao.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/modules/reuniao/reuniao.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/modules/sala/sala.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/modules/sala/sala.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/plugins/i18n/angular-locale_pt-br.js" charset="UTF-8" />
+  </component>
+</project>

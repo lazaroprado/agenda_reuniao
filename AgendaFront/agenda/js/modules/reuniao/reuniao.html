@@ -1,0 +1,129 @@
+<div ng-controller="ReuniaoController as Reuniao">
+    <div class="mb mt+">
+        <div flex-container="row">
+            <div flex-item>
+                <span class="fs-title tc-black-1 display-block ml mt">Reuniões</span>
+            </div>
+
+            <div flex-item="4">
+                <button class="btn btn--m btn--blue btn--raised float-right mb" lx-ripple ng-click="Reuniao.onclickOpenAddModal()">Cadastrar Reunião</button>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="divider divider--dark"></div>
+    </div>
+
+    <div class="center-loading">
+        <lx-progress lx-type="circular" lx-color="primary" ng-show="Reuniao.loading"></lx-progress>
+    </div>
+
+    <span class="fs-subhead ml+ tc-black-2 display-block" ng-show="Reuniao.meetingList.length === 0">Nenhuma reunião cadastrada</span>
+
+    <div flex-container="row" flex-wrap>
+        <div flex-item="3" class="p" ng-repeat="item in Reuniao.meetingList">
+            <div class="card bgc-indigo-600 cursorPointer" ng-click="Reuniao.onclickOpenEditModal(item)">
+                <div class="p tc-white-1 he1">
+                    <span class="fs-title display-block mb limitCharacteres2">{{item.assunto}}</span>
+                    <span class="fs-subhead display-block">{{item.inicio | date: "medium"}}</span>
+                </div>
+                <div class="divider divider--light"></div>
+                <div class="p">
+                    <button class="btn btn--xs btn--white btn--flat" lx-ripple>Ver</button>
+                    <i class="icon icon--s icon--white icon--flat mdi mdi-calendar float-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <lx-dialog class="dialog dialog--l" id="modalMeeting" auto-close="false">
+        <div class="dialog__header">
+            <div class="toolbar pl++">
+                <span class="toolbar__label fs-title">
+                    {{Reuniao.action}} Reunião
+                </span>
+
+                <div class="toolbar__right">
+                    <button class="btn btn--l btn--grey btn--icon" lx-ripple lx-dialog-close>
+                        <i class="mdi mdi-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dialog__content p+ mt--">
+            <div flex-container="row" flex-gutter="24">
+                <div flex-item>
+                    <lx-text-field label="Assunto">
+                        <input type="text" ng-model="Reuniao.object.assunto">
+                    </lx-text-field>
+                    <span class="fs-caption ml+ tc-red-700 display-block">* campo obrigatório</span>
+                </div>
+                <div flex-item>
+                    <lx-select ng-model="Reuniao.selectedRequester" placeholder="Solicitante" choices="Reuniao.requestersList" floating-label>
+                        <lx-select-selected>
+                            {{ $selected.nome }}
+                        </lx-select-selected>
+
+                        <lx-select-choices>
+                            {{ $choice.nome }}
+                        </lx-select-choices>
+                    </lx-select>
+                    <span class="fs-caption ml+ tc-red-700 display-block">* campo obrigatório</span>
+                </div>
+            </div>
+
+            <span class="fs-subhead tc-black-2 display-block mt++" style="margin-bottom: -16px">Início</span>
+            <div flex-container="row" flex-gutter="24">
+                <div flex-item>
+                    <lx-text-field label="Data">
+                        <input type="text" ng-model="Reuniao.inicioData" mask="39/19/9999">
+                    </lx-text-field>
+                </div>
+                <div flex-item>
+                    <lx-text-field label="Hora">
+                        <input type="text" ng-model="Reuniao.inicioHora" mask="99:99">
+                    </lx-text-field>
+                </div>
+            </div>
+
+            <span class="fs-subhead tc-black-2 display-block mt+" style="margin-bottom: -16px">Término</span>
+            <div flex-container="row" flex-gutter="24">
+                <div flex-item>
+                    <lx-text-field label="Data">
+                        <input type="text" ng-model="Reuniao.fimData" mask="39/19/9999">
+                    </lx-text-field>
+                </div>
+                <div flex-item>
+                    <lx-text-field label="Hora">
+                        <input type="text" ng-model="Reuniao.fimHora" mask="99:99">
+                    </lx-text-field>
+                </div>
+            </div>
+
+            <div flex-container="row" flex-gutter="24">
+                <div flex-item>
+                    <lx-select ng-model="Reuniao.selectedAttendee" placeholder="Participantes" choices="Reuniao.attendeesList" multiple floating-label>
+                        <lx-select-selected>
+                            {{ $selected.nome }}
+                        </lx-select-selected>
+
+                        <lx-select-choices>
+                            {{ $choice.nome }}
+                        </lx-select-choices>
+                    </lx-select>
+                    <span class="fs-caption ml+ tc-red-700 display-block">* campo obrigatório</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dialog__actions">
+            <button class="btn btn--m btn--black btn--flat" lx-ripple lx-dialog-close>Cancelar</button>
+            <button class="btn btn--m btn--black btn--flat float-left" lx-ripple ng-click="Reuniao.onclickDeleteMeeting()" ng-show="Reuniao.isEdit">Excluir</button>
+            <button class="btn btn--m btn--blue btn--raised" lx-ripple ng-click="Reuniao.onclickEditMeeting()" ng-show="Reuniao.isEdit">Salvar</button>
+            <button class="btn btn--m btn--blue btn--raised" lx-ripple ng-click="Reuniao.onclickAddMeeting()" ng-show="!Reuniao.isEdit">Cadastrar</button>
+        </div>
+        <lx-progress lx-type="linear" lx-color="primary" ng-show="Reuniao.modalLoading"></lx-progress>
+    </lx-dialog>
+
+</div>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title></title>
+
+    <link rel="stylesheet" href="../bower_components/lumx/dist/lumx.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body ng-app="app" ng-controller="AppController as App">
+<div>
+    <div class="card">
+        <div class="toolbar bgc-blue-grey-800">
+            <span class="toolbar__label fs-title tc-white-1">Agenda de Reuniões</span>
+
+            <div class="toolbar__right">
+                <button class="btn btn--xs btn--white btn--flat" lx-ripple ng-click="App.onclickLogout()">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-limit mt">
+        <div class="tc-white-1" flex-container="row">
+            <div flex-item="3" class="p">
+                <div class="card p+ bgc-blue-grey-800 tc-white-2 cursorPointer" ng-click="App.onclickGetTemplate(1)">
+                    <i class="icon icon--s tc-white-3 icon--flat mdi mdi-calendar"></i>
+                    <span class="uppercase labelMenu ml">Reuniões</span>
+                </div>
+            </div>
+            <div flex-item="3" class="p">
+                <div class="card p+ bgc-blue-grey-800 tc-white-2 cursorPointer" ng-click="App.onclickGetTemplate(2)">
+                    <i class="icon icon--s tc-white-3 icon--flat mdi mdi-puzzle"></i>
+                    <span class="uppercase labelMenu ml">Equipamentos</span>
+                </div>
+            </div>
+            <div flex-item="3" class="p">
+                <div class="card p+ bgc-blue-grey-800 tc-white-2 cursorPointer" ng-click="App.onclickGetTemplate(3)">
+                    <i class="icon icon--s tc-white-3 icon--flat mdi mdi-tag-text-outline"></i>
+                    <span class="uppercase labelMenu ml">Salas</span>
+                </div>
+            </div>
+            <div flex-item="3" class="p">
+                <div class="card p+ bgc-blue-grey-800 tc-white-2 cursorPointer" ng-click="App.onclickGetTemplate(4)">
+                    <i class="icon icon--s tc-white-3 icon--flat mdi mdi-account-circle"></i>
+                    <span class="uppercase labelMenu ml">Usuários</span>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div ng-include="App.template"></div>
+        </div>
+    </div>
+</div>
+
+<!-- bower -->
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/velocity/velocity.js"></script>
+<script src="../bower_components/moment/min/moment-with-locales.js"></script>
+<script src="../bower_components/angular/angular.min.js"></script>
+<script src="../bower_components/lumx/dist/lumx.js"></script>
+
+<!-- plugins -->
+<script src="../js/plugins/i18n/angular-locale_pt-br.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.4/angular-filter.min.js"></script>
+<script src="../js/plugins/ngMask.min.js"></script>
+
+<!-- App -->
+<script src="../js/modules/app/app.module.js"></script>
+<script src="../js/modules/app/app.controller.js"></script>
+
+<!-- Visual -->
+<script src="../js/services/visual.module.js"></script>
+<script src="../js/services/visual.service.js"></script>
+
+<!-- Pessoa -->
+<script src="../js/modules/pessoa/pessoa.module.js"></script>
+<script src="../js/modules/pessoa/pessoa.controller.js"></script>
+<script src="../js/modules/pessoa/pessoa.model.js"></script>
+
+<!-- Equipamento -->
+<script src="../js/modules/equipamento/equipamento.module.js"></script>
+<script src="../js/modules/equipamento/equipamento.controller.js"></script>
+<script src="../js/modules/equipamento/equipamento.model.js"></script>
+
+<!-- Sala -->
+<script src="../js/modules/sala/sala.module.js"></script>
+<script src="../js/modules/sala/sala.controller.js"></script>
+<script src="../js/modules/sala/sala.model.js"></script>
+
+<!-- Reuniao -->
+<script src="../js/modules/reuniao/reuniao.module.js"></script>
+<script src="../js/modules/reuniao/reuniao.controller.js"></script>
+<script src="../js/modules/reuniao/reuniao.model.js"></script>
+
+</body>
+</html>

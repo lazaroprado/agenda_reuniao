@@ -1,0 +1,102 @@
+<div ng-controller="PessoaController as Pessoa">
+    <div class="mb mt+">
+        <div flex-container="row">
+            <div flex-item>
+                <span class="fs-title tc-black-1 display-block ml mt">Usuários</span>
+            </div>
+
+            <div flex-item="4">
+                <button class="btn btn--m btn--blue btn--raised float-right mb" lx-ripple ng-click="Pessoa.onclickOpenAddModal()">Cadastrar Usuário</button>
+            </div>
+        </div>
+
+        <div class="divider divider--dark"></div>
+    </div>
+
+    <div class="center-loading">
+        <lx-progress lx-type="circular" lx-color="primary" ng-show="Pessoa.loading"></lx-progress>
+    </div>
+
+    <span class="fs-subhead ml+ tc-black-2 display-block" ng-show="Pessoa.userList.length === 0">Nenhum usuário cadastrado</span>
+
+    <ul class="list">
+        <li class="list-row card cursorPointer mb-" ng-repeat="item in Pessoa.userList" ng-click="Pessoa.onclickOpenEditModal(item)">
+            <div class="list-row__primary">
+                <i class="icon icon--s icon--grey icon--flat mdi mdi-account-circle"></i>
+            </div>
+
+            <div class="list-row__content">
+                <span class="display-block">{{item.nome}}</span>
+                <span class="display-block fs-body-1 tc-black-2">
+                    <label ng-show="item.ativo">Ativo</label>
+                    <label ng-show="!item.ativo">Não Ativo</label>
+                </span>
+            </div>
+        </li>
+    </ul>
+
+    <lx-dialog class="dialog dialog--l" id="modalUser" auto-close="false">
+        <div class="dialog__header">
+            <div class="toolbar pl++">
+                <span class="toolbar__label fs-title">
+                    {{Pessoa.action}} Usuário
+                </span>
+
+                <div class="toolbar__right">
+                    <button class="btn btn--l btn--grey btn--icon" lx-ripple lx-dialog-close>
+                        <i class="mdi mdi-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dialog__content p+ mt--">
+            <div flex-container="row" flex-gutter="24">
+                <div flex-item="6">
+                    <lx-text-field label="Nome">
+                        <input type="text" ng-model="Pessoa.object.nome">
+                    </lx-text-field>
+                    <span class="fs-caption ml+ tc-red-700 display-block">* campo obrigatório</span>
+                </div>
+            </div>
+
+            <div flex-container="row" flex-gutter="24">
+                <div flex-item="6">
+                    <lx-text-field label="Login">
+                        <input type="text" ng-model="Pessoa.object.login">
+                    </lx-text-field>
+                    <span class="fs-caption ml+ tc-red-700 display-block">* campo obrigatório</span>
+                </div>
+                <div flex-item>
+                    <lx-text-field label="Senha" disabled="Pessoa.isEdit">
+                        <input type="password" ng-model="Pessoa.object.senha" ng-disabled="Pessoa.isEdit">
+                    </lx-text-field>
+                    <span class="fs-caption ml+ tc-red-700 display-block">* campo obrigatório</span>
+                </div>
+            </div>
+
+            <div flex-container="row" flex-gutter="24">
+                <div flex-item>
+                    <lx-text-field label="Permissão">
+                        <input type="text" ng-model="Pessoa.object.permissao" mask="2">
+                    </lx-text-field>
+                </div>
+                <div flex-item>
+                    <div class="checkbox mt++">
+                        <input type="checkbox" ng-model="Pessoa.object.ativo" id="checkboxAtivo" class="checkbox__input">
+                        <label for="checkboxAtivo" class="checkbox__label">Ativo</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="dialog__actions">
+            <button class="btn btn--m btn--black btn--flat" lx-ripple lx-dialog-close>Cancelar</button>
+            <button class="btn btn--m btn--black btn--flat float-left" lx-ripple ng-click="Pessoa.onclickDeleteUser()" ng-show="Pessoa.isEdit">Excluir</button>
+            <button class="btn btn--m btn--blue btn--raised" lx-ripple ng-click="Pessoa.onclickEditUser()" ng-show="Pessoa.isEdit">Salvar</button>
+            <button class="btn btn--m btn--blue btn--raised" lx-ripple ng-click="Pessoa.onclickAddUser()" ng-show="!Pessoa.isEdit">Cadastrar</button>
+        </div>
+        <lx-progress lx-type="linear" lx-color="primary" ng-show="Pessoa.modalLoading"></lx-progress>
+    </lx-dialog>
+</div>

@@ -1,0 +1,112 @@
+<div ng-controller="SalaController as Sala">
+    <div class="mb mt+">
+        <div flex-container="row">
+            <div flex-item>
+                <span class="fs-title tc-black-1 display-block ml mt">Salas</span>
+            </div>
+
+            <div flex-item="4">
+                <button class="btn btn--m btn--blue btn--raised float-right mb" lx-ripple ng-click="Sala.onclickOpenAddModal()">Cadastrar Sala</button>
+            </div>
+        </div>
+
+        <div class="divider divider--dark"></div>
+    </div>
+
+    <div class="center-loading">
+        <lx-progress lx-type="circular" lx-color="primary" ng-show="Sala.loading"></lx-progress>
+    </div>
+
+    <span class="fs-subhead ml+ tc-black-2 display-block" ng-show="Sala.roomList.length === 0">Nenhuma sala cadastrada</span>
+
+    <ul class="list">
+        <li class="list-row card mb- cursorPointer" ng-repeat="item in Sala.roomList" ng-click="Sala.onclickOpenEditModal(item)">
+            <div class="list-row__primary">
+                <i class="icon icon--s icon--grey icon--flat mdi mdi-tag-text-outline"></i>
+            </div>
+
+            <div class="list-row__content">
+                <span class="display-block">{{item.nome}}</span>
+                <span class="display-block fs-body-1 tc-black-2" ng-show="item.horarioInicio && item.horarioFim">Funcionamento das {{item.horarioInicio | date: 'HH:mm'}} às {{item.horarioFim | date: 'HH:mm'}}</span>
+            </div>
+        </li>
+    </ul>
+
+    <lx-dialog class="dialog dialog--l" id="modalRoom" auto-close="false">
+        <div class="dialog__header">
+            <div class="toolbar pl++">
+                <span class="toolbar__label fs-title">
+                    {{Sala.action}} Sala
+                </span>
+
+                <div class="toolbar__right">
+                    <button class="btn btn--l btn--grey btn--icon" lx-ripple lx-dialog-close>
+                        <i class="mdi mdi-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dialog__content p+ mt--">
+            <div flex-container="row" flex-gutter="24">
+                <div flex-item>
+                    <lx-text-field label="Nome">
+                        <input type="text" ng-model="Sala.object.nome">
+                    </lx-text-field>
+                    <span class="fs-caption ml+ tc-red-700 display-block">* campo obrigatório</span>
+                </div>
+            </div>
+
+            <div flex-container="row" flex-gutter="24">
+                <div flex-item>
+                    <lx-text-field label="Capacidade">
+                        <input type="text" ng-model="Sala.object.capacidade">
+                    </lx-text-field>
+                </div>
+                <div flex-item>
+                    <lx-select ng-model="Sala.selectedEquipment" placeholder="Equipamentos" choices="Sala.equipmentList" multiple floating-label>
+                        <lx-select-selected>
+                            {{ $selected.nome }}
+                        </lx-select-selected>
+
+                        <lx-select-choices>
+                            {{ $choice.nome }}
+                        </lx-select-choices>
+                    </lx-select>
+                    <span class="fs-caption ml+ tc-red-700 display-block">* campo obrigatório</span>
+                </div>
+            </div>
+
+            <span class="fs-subhead tc-black-2 display-block mt" style="margin-bottom: -16px">Horário de Funcionamento</span>
+            <div flex-container="row" flex-gutter="24">
+                <div flex-item>
+                    <lx-text-field label="Início" >
+                        <input type="text" ng-model="Sala.object.horarioInicio" mask="99:99">
+                    </lx-text-field>
+                </div>
+                <div flex-item>
+                    <lx-text-field label="Término">
+                        <input type="text" ng-model="Sala.object.horarioFim" mask="99:99">
+                    </lx-text-field>
+                </div>
+            </div>
+
+            <div flex-container="row" flex-gutter="24">
+                <div flex-item>
+                    <lx-text-field label="Observação">
+                        <input type="text" ng-model="Sala.object.observacao">
+                    </lx-text-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="dialog__actions">
+            <button class="btn btn--m btn--black btn--flat" lx-ripple lx-dialog-close>Cancelar</button>
+            <button class="btn btn--m btn--black btn--flat float-left" lx-ripple ng-click="Sala.onclickDeleteRoom()" ng-show="Sala.isEdit">Excluir</button>
+            <button class="btn btn--m btn--blue btn--raised" lx-ripple ng-click="Sala.onclickEditRoom()" ng-show="Sala.isEdit">Salvar</button>
+            <button class="btn btn--m btn--blue btn--raised" lx-ripple ng-click="Sala.onclickAddRoom()" ng-show="!Sala.isEdit">Cadastrar</button>
+        </div>
+        <lx-progress lx-type="linear" lx-color="primary" ng-show="Sala.modalLoading"></lx-progress>
+    </lx-dialog>
+</div>
+

@@ -1,0 +1,79 @@
+<div ng-controller="EquipamentoController as Equipamento">
+    <div class="mb mt+">
+        <div flex-container="row">
+            <div flex-item>
+                <span class="fs-title tc-black-1 display-block ml mt">Equipamentos</span>
+            </div>
+
+            <div flex-item="4">
+                <button class="btn btn--m btn--blue btn--raised float-right mb" lx-ripple ng-click="Equipamento.onclickOpenAddModal()">Cadastrar Equipamento</button>
+            </div>
+        </div>
+
+        <div class="divider divider--dark"></div>
+    </div>
+
+    <div class="center-loading">
+        <lx-progress lx-type="circular" lx-color="primary" ng-show="Equipamento.loading"></lx-progress>
+    </div>
+
+    <span class="fs-subhead ml+ tc-black-2 display-block" ng-show="Equipamento.equipmentList.length === 0">Nenhum equipamento cadastrado</span>
+
+    <ul class="list">
+        <li class="list-row card mb- cursorPointer" ng-repeat="item in Equipamento.equipmentList" ng-click="Equipamento.onclickOpenEditModal(item)">
+            <div class="list-row__primary">
+                <i class="icon icon--s icon--grey icon--flat mdi mdi-puzzle"></i>
+            </div>
+
+            <div class="list-row__content">
+                <span class="display-block">{{item.nome}}</span>
+                <span class="display-block fs-body-1 tc-black-2">{{item.descricao}}</span>
+            </div>
+        </li>
+    </ul>
+
+    <lx-dialog class="dialog dialog--l" id="modalEquipment" auto-close="false">
+        <div class="dialog__header">
+            <div class="toolbar pl++">
+                <span class="toolbar__label fs-title">
+                    {{Equipamento.action}} Equipamento
+                </span>
+
+                <div class="toolbar__right">
+                    <button class="btn btn--l btn--grey btn--icon" lx-ripple lx-dialog-close>
+                        <i class="mdi mdi-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dialog__content p+ mt--">
+            <div flex-container="row" flex-gutter="24">
+                <div flex-item="6">
+                    <lx-text-field label="Nome">
+                        <input type="text" ng-model="Equipamento.object.nome">
+                    </lx-text-field>
+                    <span class="fs-caption ml+ tc-red-700 display-block">* campo obrigatório</span>
+                </div>
+            </div>
+
+            <div flex-container="row" flex-gutter="24">
+                <div flex-item>
+                    <lx-text-field label="Descrição">
+                        <textarea ng-model="Equipamento.object.descricao"></textarea>
+                    </lx-text-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="dialog__actions">
+            <button class="btn btn--m btn--black btn--flat" lx-ripple lx-dialog-close>Cancelar</button>
+            <button class="btn btn--m btn--black btn--flat float-left" lx-ripple ng-click="Equipamento.onclickDeleteEquipment()" ng-show="Equipamento.isEdit">Excluir</button>
+            <button class="btn btn--m btn--blue btn--raised" lx-ripple ng-click="Equipamento.onclickEditEquipment()" ng-show="Equipamento.isEdit">Salvar</button>
+            <button class="btn btn--m btn--blue btn--raised" lx-ripple ng-click="Equipamento.onclickAddEquipment()" ng-show="!Equipamento.isEdit">Cadastrar</button>
+        </div>
+        <lx-progress lx-type="linear" lx-color="primary" ng-show="Pessoa.modalLoading"></lx-progress>
+
+    </lx-dialog>
+
+</div>

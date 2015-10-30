@@ -1,0 +1,75 @@
+.text-center {
+    text-align: center;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.content-limit {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.button-line-label {
+    position: absolute;
+    top: -10px;
+}
+
+.center-loading {
+    margin: 0 50%;
+}
+
+.he1 {
+    height: 110px;
+}
+
+.limitCharacteres2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.mt\-\- {
+    margin-top: -16px;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.labelMenu {
+    position: relative;
+    top: 3px;
+}
+
+/*framework*/
+.text-field__label, .lx-select__selected--placeholder, .lx-select__floating-label, .text-field__label, .input-file__label {
+    color: #757575;
+}
+
+.text-field--is-disabled .text-field__input, .text-field--is-disabled .text-field__label {
+    color: rgba(0,0,0,.50);
+}
+
+.text-field:before, .lx-select:before, .input-file:before {
+    border-bottom: 1px solid #C7C7C7; /*#9E9E9E;*/
+}
+
+.dropdownWithImage, .dropdown-link {
+    height: auto;
+}
+
+.lx-select__choices .dropdown-menu__content ul div li a{
+    height: auto;
+}
